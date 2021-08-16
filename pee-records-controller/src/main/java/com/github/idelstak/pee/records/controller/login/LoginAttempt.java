@@ -12,8 +12,6 @@ import com.github.idelstak.pee.records.view.database.DatabaseConnectionFxml;
 import com.github.idelstak.pee.records.view.login.LoginFxml;
 import java.sql.Connection;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;

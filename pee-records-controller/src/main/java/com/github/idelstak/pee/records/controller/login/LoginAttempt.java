@@ -1,8 +1,9 @@
 /*
  * Copyright 2021
  */
-package com.github.idelstak.pee.records.controller;
+package com.github.idelstak.pee.records.controller.login;
 
+import com.github.idelstak.pee.records.controller.database.ConnectionPreferences;
 import com.github.idelstak.pee.records.controller.database.DatabaseConnectionController;
 import com.github.idelstak.pee.records.controller.login.LoginController;
 import com.github.idelstak.pee.records.database.DatabaseAccess;

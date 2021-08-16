@@ -1,7 +1,7 @@
 /*
  * Copyright 2021
  */
-package com.github.idelstak.pee.records.controller;
+package com.github.idelstak.pee.records.controller.database;
 
 import java.util.Arrays;
 import java.util.prefs.Preferences;

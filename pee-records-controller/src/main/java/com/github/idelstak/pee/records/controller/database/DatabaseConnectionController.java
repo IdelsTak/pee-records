@@ -3,7 +3,6 @@
  */
 package com.github.idelstak.pee.records.controller.database;
 
-import com.github.idelstak.pee.records.controller.ConnectionPreferences;
 import com.github.idelstak.pee.records.database.DatabaseAccess;
 import java.net.URI;
 import java.sql.Connection;

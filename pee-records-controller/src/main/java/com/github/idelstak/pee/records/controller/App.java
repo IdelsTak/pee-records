@@ -3,6 +3,7 @@
  */
 package com.github.idelstak.pee.records.controller;
 
+import com.github.idelstak.pee.records.controller.login.LoginAttempt;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;

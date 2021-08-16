@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<DialogPane fx:id="loginDialogPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox spacing="12.0" style="-fx-background-color: white;">
+         <children>
+            <VBox spacing="6.0">
+               <children>
+                  <Label text="User Type" />
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <children>
+                        <RadioButton fx:id="doctorRadioButton" alignment="TOP_RIGHT" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" style="-fx-border-color: #c1e1ec; -fx-border-radius: 12; -fx-text-fill: gray;" text="Doctor" HBox.hgrow="ALWAYS">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="userTypeToggleGroup" />
+                           </toggleGroup>
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/doctor100px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="patientRadioButton" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-border-color: #c1e1ec; -fx-border-radius: 12; -fx-text-fill: gray;" text="Patient" toggleGroup="$userTypeToggleGroup" HBox.hgrow="ALWAYS">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/patient100px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
+                           </padding>
+                        </RadioButton>
+                     </children>
+                  </HBox>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="24.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox layoutX="34.0" layoutY="34.0" spacing="6.0">
+               <children>
+                  <Label text="Username" />
+                  <TextField fx:id="userNameTextField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
+               </children>
+            </VBox>
+            <VBox spacing="6.0">
+               <children>
+                  <Label text="Password" />
+                  <PasswordField fx:id="passwordField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" />
+               </children>
+            </VBox>
+            <Label fx:id="loginStatusLabel" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" style="-fx-text-fill: red; -fx-font-size: 0.9em;" text="Login failed. Incorrect username or password" visible="false" />
+         </children>
+         <padding>
+            <Insets left="24.0" right="24.0" top="24.0" />
+         </padding>
+      </VBox>
+   </content>
+   <header>
+      <HBox alignment="CENTER" style="-fx-background-color: #add8e6;">
+         <children>
+            <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 1.5em;" text="Login" HBox.hgrow="ALWAYS" />
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/login50px.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+         </padding>
+      </HBox>
+   </header>
+</DialogPane>

@@ -12,6 +12,8 @@ import com.github.idelstak.pee.records.view.database.DatabaseConnectionFxml;
 import com.github.idelstak.pee.records.view.login.LoginFxml;
 import java.sql.Connection;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -53,7 +55,7 @@ public class LoginAttempt {
                 //Create them if they don't exist
                 //Insert at least one admin
                 InitializeTables initializeTables = new InitializeTables(ds);
-                
+
                 initializeTables.start();
                 //After tables have been initialized
                 //show the login dialog
@@ -95,7 +97,11 @@ public class LoginAttempt {
 
         alert.setTitle("Database Connection Error");
         alert.setHeaderText("Failed to connect.\nCheck connection settings");
-        alert.setContentText(message.substring(message.indexOf(": ") + 1));
+        try {
+            alert.setContentText(message.substring(message.indexOf(": ") + 1));
+        } catch (Exception e) {
+            //message could be in a format that is unexpected
+        }
 
         ButtonType settingsBtnType = new ButtonType("Settings", ButtonBar.ButtonData.OK_DONE);
 

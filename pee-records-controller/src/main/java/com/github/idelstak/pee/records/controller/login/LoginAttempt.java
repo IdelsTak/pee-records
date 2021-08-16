@@ -5,7 +5,7 @@ package com.github.idelstak.pee.records.controller.login;
 
 import com.github.idelstak.pee.records.controller.database.ConnectionPreferences;
 import com.github.idelstak.pee.records.controller.database.DatabaseConnectionController;
-import com.github.idelstak.pee.records.controller.login.LoginController;
+import com.github.idelstak.pee.records.dao.api.InitializeTables;
 import com.github.idelstak.pee.records.database.DatabaseAccess;
 import com.github.idelstak.pee.records.view.api.FxmlParent;
 import com.github.idelstak.pee.records.view.database.DatabaseConnectionFxml;
@@ -49,6 +49,14 @@ public class LoginAttempt {
             DataSource ds = databaseAccess.getDataSource();
 
             try (Connection conn = ds.getConnection()) {
+                //Initialize the database tables
+                //Create them if they don't exist
+                //Insert at least one admin
+                InitializeTables initializeTables = new InitializeTables(ds);
+                
+                initializeTables.start();
+                //After tables have been initialized
+                //show the login dialog
                 showLoginDialog(ds);
             }
         } catch (Exception e) {

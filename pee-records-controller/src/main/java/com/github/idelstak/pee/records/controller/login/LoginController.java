@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
+import java.util.Optional;
 import java.util.logging.Logger;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
@@ -53,21 +53,23 @@ public class LoginController {
     private final DataSource dataSource;
     private final List<Doctor> allDoctors = new ArrayList<>();
     private final BooleanProperty correctLoginProp = new SimpleBooleanProperty(false);
+    private final ButtonType loginButtonType;
+    private Optional<String> user = Optional.empty();
 
     public LoginController(DataSource dataSource) {
         if (dataSource == null) {
             throw new IllegalArgumentException("Data source must not be null");
         }
         this.dataSource = dataSource;
+        this.loginButtonType = new ButtonType("Login", ButtonData.OK_DONE);
     }
 
     @FXML
     void initialize() {
         //Add the button types
-        ButtonType loginBtnType = new ButtonType("Login", ButtonData.OK_DONE);
-        loginDialogPane.getButtonTypes().addAll(loginBtnType, ButtonType.CANCEL);
+        loginDialogPane.getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 
-        Button loginButton = (Button) loginDialogPane.lookupButton(loginBtnType);
+        Button loginButton = (Button) loginDialogPane.lookupButton(loginButtonType);
 
         loginButton.disableProperty().bind(Bindings.createBooleanBinding(() -> {
             String username = userNameTextField.textProperty().getValue();
@@ -83,14 +85,22 @@ public class LoginController {
 
             boolean correct = correctLogin();
 
-            logger.log(Level.INFO, "Login correct? {0}", correct);
-
-            if (correct) {
+            //If not correct just consume the event
+            //Consuming the event doesn't close the dialog
+            if (!correct) {
                 evt.consume();
             }
         });
 
     }
+
+    public ButtonType getLoginButton() {
+        return loginButtonType;
+    }
+    
+    public Optional<String> getUsername(){
+        return Optional.of(userNameTextField.getText());
+    } 
 
     private boolean correctLogin() {
         if (passwordField.getText() == null || passwordField.getText().isBlank()) {

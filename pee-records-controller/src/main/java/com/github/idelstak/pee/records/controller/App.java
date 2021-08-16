@@ -31,7 +31,7 @@ public class App extends Application {
         
         LOGGER.log(Level.INFO, "Logged in user: {0}", user);
 
-        primaryStage.setTitle("Pee Records");
+        primaryStage.setTitle("Pee Calendar");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

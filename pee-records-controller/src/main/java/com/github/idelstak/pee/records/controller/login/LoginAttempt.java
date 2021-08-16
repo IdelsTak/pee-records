@@ -77,7 +77,7 @@ public class LoginAttempt {
 
         Alert alert = new Alert(Alert.AlertType.NONE);
 
-        alert.setTitle("Login");
+        alert.setTitle("Pee Calendar");
         alert.setDialogPane((DialogPane) root);
 
         alert.showAndWait()
@@ -125,7 +125,7 @@ public class LoginAttempt {
 
         Alert alert = new Alert(Alert.AlertType.NONE);
 
-        alert.setTitle("Settings");
+        alert.setTitle("Pee Calendar");
         alert.setDialogPane((DialogPane) root);
 
         alert.showAndWait()

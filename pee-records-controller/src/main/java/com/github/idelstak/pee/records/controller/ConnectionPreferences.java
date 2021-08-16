@@ -4,6 +4,9 @@
 package com.github.idelstak.pee.records.controller;
 
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 /**
@@ -22,6 +25,12 @@ public class ConnectionPreferences {
 
     public ConnectionPreferences() {
         this.prefs = Preferences.userNodeForPackage(ConnectionPreferences.class);
+        
+//        try {
+//            prefs.clear();
+//        } catch (BackingStoreException ex) {
+//            Logger.getLogger(ConnectionPreferences.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public String getUrl() {

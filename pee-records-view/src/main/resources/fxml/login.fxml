@@ -37,7 +37,7 @@
                               <Insets bottom="6.0" left="6.0" right="6.0" top="6.0" />
                            </padding>
                         </RadioButton>
-                        <RadioButton fx:id="patientRadioButton" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-border-color: #c1e1ec; -fx-border-radius: 12; -fx-text-fill: gray;" text="Patient" toggleGroup="$userTypeToggleGroup" HBox.hgrow="ALWAYS">
+                        <RadioButton fx:id="patientRadioButton" alignment="TOP_LEFT" contentDisplay="TOP" disable="true" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" style="-fx-border-color: #c1e1ec; -fx-border-radius: 12; -fx-text-fill: gray;" text="Patient" toggleGroup="$userTypeToggleGroup" HBox.hgrow="ALWAYS">
                            <graphic>
                               <ImageView pickOnBounds="true" preserveRatio="true">
                                  <image>

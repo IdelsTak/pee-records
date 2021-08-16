@@ -2,10 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonType?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<DialogPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane fx:id="connectionDialogPane" stylesheets="@../css/database-admin-dialog.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <content>
       <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="24.0" style="-fx-background-color: white;">
          <children>
@@ -24,13 +24,7 @@
                         <VBox spacing="6.0">
                            <children>
                               <Label text="Host" />
-                              <TextField fx:id="hostTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="e.g. localhost" />
-                           </children>
-                        </VBox>
-                        <VBox spacing="6.0">
-                           <children>
-                              <Label text="Port" />
-                              <TextField fx:id="portTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="e.g. 3306" />
+                              <TextField fx:id="hostTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="e.g. localhost, 127.0.0.1" />
                            </children>
                         </VBox>
                      </children>
@@ -38,7 +32,7 @@
                   <VBox spacing="6.0">
                      <children>
                         <Label text="Database Name" />
-                        <TextField fx:id="databaseNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" />
+                        <TextField fx:id="databaseNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
@@ -48,13 +42,13 @@
                   <VBox spacing="6.0">
                      <children>
                         <Label text="Username" />
-                        <TextField fx:id="usernameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" />
+                        <TextField fx:id="usernameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                   <VBox spacing="6.0">
                      <children>
                         <Label text="Password" />
-                        <PasswordField fx:id="passwordTextfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" />
+                        <PasswordField fx:id="passwordTextfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
@@ -62,13 +56,31 @@
             <VBox spacing="6.0" VBox.vgrow="NEVER">
                <children>
                   <Label text="URL" />
-                  <TextField fx:id="urlTextField" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" promptText="jdbc:mysql://localhost:3306/mysql" />
+                  <TextField fx:id="urlTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" promptText="jdbc:mysql://localhost/databasename" />
                </children>
             </VBox>
-            <VBox spacing="6.0" VBox.vgrow="NEVER">
+            <VBox spacing="12.0" VBox.vgrow="NEVER">
                <children>
-                  <Button fx:id="testConnectionButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" text="Test Connection" />
-                  <Label fx:id="connectionStatusLabel" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" text="Connection was successful" />
+                  <HBox spacing="12.0">
+                     <children>
+                        <Button fx:id="testConnectionButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Test Connection">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/data-transfer18px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ProgressIndicator fx:id="connectionProgressIndicator" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" progress="0.0" visible="false" />
+                     </children>
+                  </HBox>
+                  <VBox>
+                     <children>
+                        <Label fx:id="connectionStatusLabel" contentDisplay="RIGHT" graphicTextGap="6.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" wrapText="true" />
+                        <Label fx:id="connectionFailureDetailsLabel" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="80.0" style="-fx-font-size: 0.9em; -fx-text-fill: grey;" wrapText="true" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
@@ -77,10 +89,6 @@
          </padding>
       </VBox>
    </content>
-   <buttonTypes>
-      <ButtonType fx:constant="OK" />
-      <ButtonType fx:constant="CANCEL" />
-   </buttonTypes>
    <header>
       <HBox alignment="CENTER" style="-fx-background-color: #add8e6;">
          <children>

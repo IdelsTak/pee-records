@@ -1,0 +1,23 @@
+/*
+Copyright 2021
+*/
+/* 
+    Created on : Aug 16, 2021, 2:24:21 PM
+    Author     : Hiram K. <https://github.com/IdelsTak>
+*/
+
+.status-label-success .text {
+    /*-fx-fill: #2ecc71;*/
+}
+
+.status-label-success > .image-view {
+    -fx-image: url("../images/checkmark20px.png")
+}
+
+.status-label-error .text {
+    /*-fx-fill: #e74c3c;*/
+}
+
+.status-label-error > .image-view {
+    -fx-image: url("../images/wrong20px.png")
+}

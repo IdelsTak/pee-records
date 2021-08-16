@@ -40,11 +40,11 @@ public class LoginAttempt {
 
         DatabaseAccess databaseAccess = new DatabaseAccess(user, password, url);
 
+        //Attempting to access the database will throw an error if
+        //(1) the server has not been started
+        //(2) the url points to a non-existent database
+        //(3) the database login credentials are not correct
         try {
-            //Attempting to access the database will throw an error if
-            //(1) the server has not been started
-            //(2) the url points to a non-existent database
-            //(3) the database login credentials are not correct
             DataSource ds = databaseAccess.getDataSource();
 
             try (Connection conn = ds.getConnection()) {
@@ -115,9 +115,9 @@ public class LoginAttempt {
 
         alert.showAndWait()
                 .filter(btn -> btn == controller.getSaveButton())
-                .ifPresentOrElse(//Try to connect again
-                        //If the settings are ok a login dialog will
-                        //be brought up
+                .ifPresentOrElse(
+                        //If the settings are ok
+                        //show a login dialog
                         btn -> getUser(),
                         //Exit if the settings were not saved
                         () -> Platform.exit()

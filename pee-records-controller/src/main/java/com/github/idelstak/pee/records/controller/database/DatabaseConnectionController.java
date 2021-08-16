@@ -75,6 +75,8 @@ public class DatabaseConnectionController {
         });
 
         String url = preferences.getUrl();
+        //URL should be longer than 5 characters if it is valid
+        //A proper URL should at least contain: "jdbc:mysql://"
         if (url != null && url.length() > 5) {
             URI uri = URI.create(url.substring(5));
 

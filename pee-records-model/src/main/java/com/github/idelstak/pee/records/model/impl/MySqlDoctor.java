@@ -48,7 +48,7 @@ public class MySqlDoctor implements Doctor, Comparable<Doctor> {
     @Override
     public Name getName() {
         if (name == null) {
-            String sql = "SELECT firstname, lastname FROM doctors WHERE id = ?";
+            String sql = "SELECT first_name, last_name FROM doctors WHERE id = ?";
 
             try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
@@ -107,7 +107,7 @@ public class MySqlDoctor implements Doctor, Comparable<Doctor> {
 
                 try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
-                        int activeFlag = rset.getInt(1);
+                        int activeFlag = Short.valueOf(rset.getShort(1)).intValue();
 
                         active = (activeFlag == 0) ? Boolean.FALSE : (activeFlag == 1 ? Boolean.TRUE : Boolean.FALSE);
                     }

@@ -40,7 +40,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
         List<Doctor> doctors = new ArrayList<>();
         String sql = "SELECT * FROM doctors";
 
-        try ( Connection conn = dataSource.getConnection();  Statement stmt = conn.createStatement();  ResultSet rset = stmt.executeQuery(sql)) {
+        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement(); ResultSet rset = stmt.executeQuery(sql)) {
             while (rset.next()) {
                 doctors.add(new MySqlDoctor(dataSource, rset.getInt(1)));
             }
@@ -79,18 +79,18 @@ public class MySqlDoctorsDao implements DoctorsDao {
         }
 
         Optional<Entity> optionalDoctorId = Optional.empty();
-        String sql = "INSERT INTO doctors (firstname, lastname, email, password, active) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO doctors (first_name, last_name, email, password, active) VALUES (?, ?, ?, ?, ?)";
 
-        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, name.getFirstName());
             stmt.setString(2, name.getLastName());
             stmt.setString(3, credentials.getEmail());
             stmt.setString(4, new String(credentials.getPassword()));
-            stmt.setInt(5, 1);
+            stmt.setShort(5, Integer.valueOf(1).shortValue());
 
             stmt.executeUpdate();
 
-            try ( ResultSet rset = stmt.getGeneratedKeys()) {
+            try (ResultSet rset = stmt.getGeneratedKeys()) {
                 if (rset.next()) {
                     int id = rset.getInt(1);
                     optionalDoctorId = Optional.of(() -> id);
@@ -111,9 +111,9 @@ public class MySqlDoctorsDao implements DoctorsDao {
             throw new IllegalArgumentException("Doctor's name must not be null");
         }
 
-        String sql = "UPDATE doctors SET firstname = ?, lastname = ? WHERE id = ?";
+        String sql = "UPDATE doctors SET first_name = ?, last_name = ? WHERE id = ?";
 
-        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newName.getFirstName());
             stmt.setString(2, newName.getLastName());
             stmt.setInt(3, doctorId.getId());
@@ -134,7 +134,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
 
         String sql = "UPDATE doctors SET email = ?, password = ? WHERE id = ?";
 
-        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newCredentials.getEmail());
             stmt.setString(2, new String(newCredentials.getPassword()));
             stmt.setInt(3, doctorId.getId());
@@ -162,8 +162,8 @@ public class MySqlDoctorsDao implements DoctorsDao {
 
         String sql = "UPDATE doctors SET active = ? WHERE id = ?";
 
-        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, activate ? 1 : 0);
+        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setShort(1, activate ? Integer.valueOf(1).shortValue() : Integer.valueOf(1).shortValue());
             stmt.setInt(2, doctorId.getId());
 
             stmt.executeUpdate();

@@ -3,7 +3,10 @@
  */
 package com.github.idelstak.pee.records.controller;
 
+import com.github.idelstak.pee.records.controller.doctor.DoctorViewController;
 import com.github.idelstak.pee.records.controller.login.LoginAttempt;
+import com.github.idelstak.pee.records.view.api.FxmlParent;
+import com.github.idelstak.pee.records.view.doctor.DoctorViewFxml;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +31,14 @@ public class App extends Application {
         LoginAttempt attempt = new LoginAttempt();
 
         Optional<String> user = attempt.getUser();
-        
+
+        user.ifPresent(username -> {
+            FxmlParent fxmlParent = new FxmlParent(new DoctorViewFxml(), new DoctorViewController(username));
+            
+            scene.setRoot(fxmlParent.get());
+            primaryStage.setMaximized(true);
+        });
+
         LOGGER.log(Level.INFO, "Logged in user: {0}", user);
 
         primaryStage.setTitle("Pee Calendar");

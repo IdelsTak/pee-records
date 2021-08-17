@@ -147,9 +147,9 @@ public class MySqlPeeEvent implements PeeEvent, Comparable<PeeEvent> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("PeeEvent{id=").append(id);
-        sb.append(", cycle=").append(cycle);
-        sb.append(", when=").append(when);
-        sb.append(", type=").append(type);
+        sb.append(", cycle=").append(this.getCycle());
+        sb.append(", when=").append(this.getWhen());
+        sb.append(", type=").append(this.getType());
         sb.append('}');
         return sb.toString();
     }

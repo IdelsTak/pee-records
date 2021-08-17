@@ -56,7 +56,7 @@ public class DatabaseConnectionController {
     }
 
     @FXML
-    void initialize() {
+    public void initialize() {
         //Add the button types
         connectionDialogPane.getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
 

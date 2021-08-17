@@ -14,7 +14,7 @@ import java.util.Optional;
  */
 public interface PeeEvent extends Entity {
 
-    PeeCycle getPeeRecord();
+    PeeCycle getCycle();
 
     LocalDateTime getWhen();
 

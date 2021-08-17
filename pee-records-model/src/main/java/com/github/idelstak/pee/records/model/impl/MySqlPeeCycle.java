@@ -59,9 +59,7 @@ public class MySqlPeeCycle implements PeeCycle, Comparable<PeeCycle> {
 
                 try (ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
-                        int patientId = rset.getInt(1);
-
-                        patient = new MySqlPatient(dataSource, patientId);
+                        patient = new MySqlPatient(dataSource, rset.getInt(1));
                     }
                 }
             } catch (SQLException ex) {

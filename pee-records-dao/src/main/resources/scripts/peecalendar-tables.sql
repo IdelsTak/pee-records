@@ -27,22 +27,23 @@ CREATE TABLE IF NOT EXISTS `patients` (
 ) ENGINE=InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS `pee_records` (
+CREATE TABLE IF NOT EXISTS `pee_cycles` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `start_date` DATE NOT NULL,
   `patient_id` INT NOT NULL,
+  `start_date` DATE NOT NULL,
+  `end_date` DATE NOT NULL,
   PRIMARY KEY (`id`),
   INDEX (`patient_id`),
   FOREIGN KEY (`patient_id`) REFERENCES `patients` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB; 
 
 
-CREATE TABLE IF NOT EXISTS `pee_record_events` (
+CREATE TABLE IF NOT EXISTS `pee_cycle_events` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `pee_record_id` INT NOT NULL,
+  `pee_cycle_id` INT NOT NULL,
   `when_peed` DATETIME NOT NULL,
   `pee_type` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX (`pee_record_id`),
-  FOREIGN KEY (`pee_record_id`) REFERENCES `pee_records` (`id`) ON DELETE CASCADE
+  INDEX (`pee_cycle_id`),
+  FOREIGN KEY (`pee_cycle_id`) REFERENCES `pee_cycles` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB;

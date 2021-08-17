@@ -46,7 +46,7 @@ public interface PeeEvent extends Entity {
                 this.description = description;
             }
 
-            public Type toPeeState() {
+            public Type toPeeType() {
                 Optional<Type> optionalType = Arrays.stream(Type.values())
                         .filter(type -> type.toString().equalsIgnoreCase(description))
                         .findFirst();

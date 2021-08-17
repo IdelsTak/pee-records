@@ -205,10 +205,10 @@ public class MySqlPatient implements Patient, Comparable<Patient> {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Patient{id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", credentials=").append(credentials);
-        sb.append(", dateOfBirth=").append(dateOfBirth);
-        sb.append(", registrationDate=").append(registrationDate);
+        sb.append(", name=").append(this.getName());
+        sb.append(", credentials=").append(this.getCredentials());
+        sb.append(", dateOfBirth=").append(this.getDateOfBirth());
+        sb.append(", registrationDate=").append(this.getRegistrationDate());
         sb.append('}');
         return sb.toString();
     }

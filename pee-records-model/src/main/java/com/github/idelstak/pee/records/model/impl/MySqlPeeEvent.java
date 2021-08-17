@@ -57,8 +57,7 @@ public class MySqlPeeEvent implements PeeEvent, Comparable<PeeEvent> {
 
                 try (ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
-                        int cycleId = rset.getInt(1);
-                        //TODO: implement concrete PeeCycle class first
+                        cycle = new MySqlPeeCycle(dataSource, rset.getInt(1));
                     }
                 }
             } catch (SQLException ex) {

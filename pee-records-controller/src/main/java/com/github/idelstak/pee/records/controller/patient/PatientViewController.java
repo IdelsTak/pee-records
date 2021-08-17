@@ -17,6 +17,9 @@ import com.calendarfx.view.VirtualGrid;
 import com.github.idelstak.pee.records.model.api.Name;
 import com.github.idelstak.pee.records.model.spi.Patient;
 import com.github.idelstak.pee.records.model.spi.PeeCycle;
+import com.github.idelstak.pee.records.view.api.FxmlParent;
+import com.github.idelstak.pee.records.view.patient.CycleDetailsFxml;
+import com.github.idelstak.pee.records.view.patient.PeeEventFxml;
 import static java.lang.Thread.sleep;
 import java.text.MessageFormat;
 import java.time.DayOfWeek;
@@ -28,6 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Hyperlink;
@@ -74,14 +78,25 @@ public class PatientViewController {
 
         calendarView.getDayPage().getAgendaView().setShowStatusLabel(false);
 
-        calendarView.setEntryDetailsPopOverContentCallback(param -> new BorderPane(new Label("Custom Popup")));
+        calendarView.setEntryDetailsPopOverContentCallback(param -> {
+            Entry<?> entry = param.getEntry();
+            LocalDate startDate = entry.getStartDate();
+            LocalTime startTime = entry.getStartTime();
+            String type = entry.getCalendar().getName();
+            
+            FxmlParent fxmlParent = new FxmlParent(new PeeEventFxml(), new PeeEventDetailsController());
+            return fxmlParent.get();
+        });
         Calendar dryCalendar = new Calendar("Dry Night");
+        dryCalendar.setShortName("Dry");
         dryCalendar.setStyle(Calendar.Style.STYLE1);
 
         Calendar dropsCalendar = new Calendar("Few Drops");
+        dropsCalendar.setShortName("Drops");
         dropsCalendar.setStyle(Calendar.Style.STYLE3);
 
         Calendar wetCalendar = new Calendar("Wet Night");
+        wetCalendar.setShortName("Wet");
         wetCalendar.setStyle(Calendar.Style.STYLE6);
 
         CalendarSource cycle1Source = new CalendarSource("Cycle 1");
@@ -90,7 +105,7 @@ public class PatientViewController {
 
         calendarView.getCalendarSources().setAll(cycle1Source);
         calendarView.setRequestedTime(LocalTime.now());
-        
+
         calendarView.setEntryFactory(param -> {
             DateControl control = param.getDateControl();
 
@@ -143,6 +158,16 @@ public class PatientViewController {
             return contextMenu;
         });
 
+        calendarView.setContextMenuCallback(param -> {
+            ContextMenu menu = new ContextMenu();
+            MenuItem newEntryItem = new MenuItem("Add New Pee Event");
+            newEntryItem.setOnAction(evt -> {
+                calendarView.createEntryAt(param.getZonedDateTime());
+            });
+            menu.getItems().add(newEntryItem);
+            return menu;
+        });
+
         Thread updateTimeThread = new Thread("Calendar: Update Time Thread") {
             @Override
             public void run() {
@@ -166,7 +191,6 @@ public class PatientViewController {
         updateTimeThread.setPriority(Thread.MIN_PRIORITY);
         updateTimeThread.setDaemon(true);
         updateTimeThread.start();
-
 
     }
     private static final Logger logger = Logger.getLogger(PatientViewController.class.getName());

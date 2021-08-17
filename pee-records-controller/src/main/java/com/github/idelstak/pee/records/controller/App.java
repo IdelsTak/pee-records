@@ -3,6 +3,7 @@
  */
 package com.github.idelstak.pee.records.controller;
 
+import com.calendarfx.view.CalendarView;
 import com.github.idelstak.pee.records.controller.patient.PatientViewController;
 import com.github.idelstak.pee.records.controller.login.LoginAttempt;
 import com.github.idelstak.pee.records.model.spi.Patient;
@@ -11,6 +12,7 @@ import com.github.idelstak.pee.records.view.patient.PatientViewFxml;
 import java.util.Optional;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -34,8 +36,10 @@ public class App extends Application {
 
         user.ifPresent(username -> {
             FxmlParent fxmlParent = new FxmlParent(new PatientViewFxml(), new PatientViewController(username));
-            
-            scene.setRoot(fxmlParent.get());
+            String stylesheet = CalendarView.class.getResource("calendar.css").toExternalForm();
+            Parent patientView = fxmlParent.get();
+//            patientView.getStylesheets().add(stylesheet);
+            scene.setRoot(patientView);
             primaryStage.setMaximized(true);
         });
 

@@ -24,7 +24,7 @@ public interface DoctorsDao {
 
     void rename(Entity doctorId, Name newName) throws IOException;
 
-    void changeLoginCredentials(Entity doctorId, Credentials newCredentials) throws IOException;
+    void updateLoginCredentials(Entity doctorId, Credentials newCredentials) throws IOException;
 
     void deactivate(Entity doctorId) throws IOException;
 

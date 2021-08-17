@@ -125,7 +125,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
     }
 
     @Override
-    public void changeLoginCredentials(Entity doctorId, Credentials newCredentials) throws IOException {
+    public void updateLoginCredentials(Entity doctorId, Credentials newCredentials) throws IOException {
         if (doctorId == null) {
             throw new IllegalArgumentException("Doctor's id must not be null");
         } else if (newCredentials == null) {
@@ -163,7 +163,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
         String sql = "UPDATE doctors SET active = ? WHERE id = ?";
 
         try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setShort(1, activate ? Integer.valueOf(1).shortValue() : Integer.valueOf(1).shortValue());
+            stmt.setShort(1, activate ? Integer.valueOf(1).shortValue() : Integer.valueOf(0).shortValue());
             stmt.setInt(2, doctorId.getId());
 
             stmt.executeUpdate();

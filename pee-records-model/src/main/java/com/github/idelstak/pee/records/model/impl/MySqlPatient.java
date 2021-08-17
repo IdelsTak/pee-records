@@ -153,7 +153,7 @@ public class MySqlPatient implements Patient, Comparable<Patient> {
 
             try (ResultSet rset = stmt.executeQuery()) {
                 while (rset.next()) {
-                    //TODO: Implement a concrete PeeCycle first
+                    cycles.add(new MySqlPeeCycle(dataSource, rset.getInt(1)));
                 }
             }
         } catch (SQLException ex) {

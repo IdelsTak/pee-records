@@ -1,7 +1,7 @@
 /*
  * Copyright 2021
  */
-package com.github.idelstak.pee.records.dao.spi.impl;
+package com.github.idelstak.pee.records.dao.impl;
 
 import com.github.idelstak.pee.records.dao.spi.PeeCyclesDao;
 import com.github.idelstak.pee.records.model.impl.MySqlPeeCycle;

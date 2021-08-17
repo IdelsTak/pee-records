@@ -4,7 +4,7 @@
 package com.github.idelstak.pee.records.controller.login;
 
 import com.github.idelstak.pee.records.dao.spi.DoctorsDao;
-import com.github.idelstak.pee.records.dao.spi.impl.MySqlDoctorsDao;
+import com.github.idelstak.pee.records.dao.impl.MySqlDoctorsDao;
 import com.github.idelstak.pee.records.model.spi.Doctor;
 import com.github.idelstak.pee.records.model.spi.core.Login;
 import java.io.IOException;

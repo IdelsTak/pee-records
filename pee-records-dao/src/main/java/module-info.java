@@ -9,5 +9,5 @@ module pee.dao {
     
     exports com.github.idelstak.pee.records.dao.api;
     exports com.github.idelstak.pee.records.dao.spi;
-    exports com.github.idelstak.pee.records.dao.spi.impl;
+    exports com.github.idelstak.pee.records.dao.impl;
 }

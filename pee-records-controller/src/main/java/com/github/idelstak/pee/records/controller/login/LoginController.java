@@ -57,6 +57,8 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+        //Make the user name get the focus when dialog is shown
+        userNameTextField.skinProperty().addListener((o) -> userNameTextField.requestFocus());
         //Add the button types
         loginDialogPane.getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 

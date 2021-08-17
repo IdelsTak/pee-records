@@ -10,11 +10,13 @@ import java.time.LocalDate;
  *
  * @author Hiram K. <https://github.com/IdelsTak>
  */
-public interface PeeRecord extends Entity {
+public interface PeeCycle extends Entity {
 
     Patient getPatient();
 
     LocalDate getStartDate();
+
+    LocalDate getEndDate();
 
     Iterable<PeeEvent> getPeeEvents();
 

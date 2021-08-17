@@ -18,5 +18,5 @@ public interface Patient extends Entity, Nameable, Login {
 
     LocalDate getRegistrationDate();
 
-    Iterable<PeeRecord> getPeeRecords();
+    Iterable<PeeCycle> getPeeCycles();
 }

@@ -14,19 +14,19 @@ import java.util.Optional;
  */
 public interface PeeEvent extends Entity {
 
-    PeeRecord getPeeRecord();
+    PeeCycle getPeeRecord();
 
     LocalDateTime getWhen();
 
-    Status getStatus();
+    Type getType();
 
-    public enum Status {
+    public enum Type {
         WET_NIGHT("Wet Night"),
         FEW_DROPS("Few Drops"),
         DRY_NIGHT("Dry Night");
         private final String description;
 
-        private Status(String description) {
+        private Type(String description) {
             this.description = description;
         }
 
@@ -41,16 +41,16 @@ public interface PeeEvent extends Entity {
 
             public Description(String description) {
                 if (description == null || description.isBlank()) {
-                    throw new IllegalArgumentException("Pee status description must not be null");
+                    throw new IllegalArgumentException("Pee type description must not be null");
                 }
                 this.description = description;
             }
 
-            public Status toPeeState() {
-                Optional<Status> optionalState = Arrays.stream(Status.values())
-                        .filter(state -> state.toString().equalsIgnoreCase(description))
+            public Type toPeeState() {
+                Optional<Type> optionalType = Arrays.stream(Type.values())
+                        .filter(type -> type.toString().equalsIgnoreCase(description))
                         .findFirst();
-                return optionalState.orElseThrow(() -> new TypeNotPresentException(description, null));
+                return optionalType.orElseThrow(() -> new TypeNotPresentException(description, null));
             }
         }
     }

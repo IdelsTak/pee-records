@@ -11,6 +11,7 @@ module pee.controller {
     requires pee.view;
     requires pee.dao;
     requires pee.model;
+    requires com.calendarfx.view;
 
     opens com.github.idelstak.pee.records.controller to javafx.graphics;
     exports com.github.idelstak.pee.records.controller;
@@ -21,6 +22,6 @@ module pee.controller {
     opens com.github.idelstak.pee.records.controller.login to javafx.fxml;
     exports com.github.idelstak.pee.records.controller.login;
     
-    opens com.github.idelstak.pee.records.controller.doctor to javafx.fxml;
-    exports com.github.idelstak.pee.records.controller.doctor;
+    opens com.github.idelstak.pee.records.controller.patient to javafx.fxml;
+    exports com.github.idelstak.pee.records.controller.patient;
 }

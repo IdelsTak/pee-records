@@ -14,5 +14,5 @@ module pee.view {
     exports com.github.idelstak.pee.records.view.spi;
     exports com.github.idelstak.pee.records.view.database;
     exports com.github.idelstak.pee.records.view.login;
-    exports com.github.idelstak.pee.records.view.doctor;
+    exports com.github.idelstak.pee.records.view.patient;
 }

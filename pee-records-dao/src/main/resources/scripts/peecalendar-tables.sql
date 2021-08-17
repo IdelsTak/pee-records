@@ -27,6 +27,11 @@ CREATE TABLE IF NOT EXISTS `patients` (
 ) ENGINE=InnoDB;
 
 
+LOCK TABLES `patients` WRITE;
+INSERT INTO patients (first_name, last_name, date_of_birth, registration_date, email, password) 
+	VALUES ('John', 'Doe', '2020-04-17', '2021-08-11', 'johndoe@gmail.com', '123');
+UNLOCK TABLES;
+
 CREATE TABLE IF NOT EXISTS `pee_cycles` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `patient_id` INT NOT NULL,

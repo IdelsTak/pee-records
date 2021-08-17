@@ -3,12 +3,12 @@
  */
 package com.github.idelstak.pee.records.controller;
 
-import com.github.idelstak.pee.records.controller.doctor.DoctorViewController;
+import com.github.idelstak.pee.records.controller.patient.PatientViewController;
 import com.github.idelstak.pee.records.controller.login.LoginAttempt;
+import com.github.idelstak.pee.records.model.spi.Patient;
 import com.github.idelstak.pee.records.view.api.FxmlParent;
-import com.github.idelstak.pee.records.view.doctor.DoctorViewFxml;
+import com.github.idelstak.pee.records.view.patient.PatientViewFxml;
 import java.util.Optional;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -30,16 +30,14 @@ public class App extends Application {
         //Check whether database connection can be established
         LoginAttempt attempt = new LoginAttempt();
 
-        Optional<String> user = attempt.getUser();
+        Optional<Patient> user = attempt.getUser();
 
         user.ifPresent(username -> {
-            FxmlParent fxmlParent = new FxmlParent(new DoctorViewFxml(), new DoctorViewController(username));
+            FxmlParent fxmlParent = new FxmlParent(new PatientViewFxml(), new PatientViewController(username));
             
             scene.setRoot(fxmlParent.get());
             primaryStage.setMaximized(true);
         });
-
-        LOGGER.log(Level.INFO, "Logged in user: {0}", user);
 
         primaryStage.setTitle("Pee Calendar");
         primaryStage.setScene(scene);

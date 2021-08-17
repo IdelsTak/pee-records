@@ -3,9 +3,9 @@
  */
 package com.github.idelstak.pee.records.controller.login;
 
-import com.github.idelstak.pee.records.dao.spi.DoctorsDao;
-import com.github.idelstak.pee.records.dao.impl.MySqlDoctorsDao;
-import com.github.idelstak.pee.records.model.spi.Doctor;
+import com.github.idelstak.pee.records.dao.impl.MySqlPatientsDao;
+import com.github.idelstak.pee.records.dao.spi.PatientsDao;
+import com.github.idelstak.pee.records.model.spi.Patient;
 import com.github.idelstak.pee.records.model.spi.core.Login;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,9 +24,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javax.sql.DataSource;
 
 /**
@@ -39,22 +37,15 @@ public class LoginController {
     @FXML
     private DialogPane loginDialogPane;
     @FXML
-    private RadioButton doctorRadioButton;
-    @FXML
-    private ToggleGroup userTypeToggleGroup;
-    @FXML
-    private RadioButton patientRadioButton;
-    @FXML
     private TextField userNameTextField;
     @FXML
     private PasswordField passwordField;
     @FXML
     private Label loginStatusLabel;
     private final DataSource dataSource;
-    private final List<Doctor> allDoctors = new ArrayList<>();
+    private final List<Patient> allPatients = new ArrayList<>();
     private final BooleanProperty correctLoginProp = new SimpleBooleanProperty(false);
     private final ButtonType loginButtonType;
-    private Optional<String> user = Optional.empty();
 
     public LoginController(DataSource dataSource) {
         if (dataSource == null) {
@@ -97,29 +88,40 @@ public class LoginController {
     public ButtonType getLoginButton() {
         return loginButtonType;
     }
-    
-    public Optional<String> getUsername(){
-        return Optional.of(userNameTextField.getText());
-    } 
+
+    public Optional<Patient> getUsername() {
+        return allPatients.stream()
+                .filter(patient -> emailsMatch(patient, userNameTextField.getText()))
+                .findFirst();
+    }
+
+    private boolean emailsMatch(Patient patient, String username) {
+        String email = patient.getCredentials()
+                .getEmail()
+                .toLowerCase()
+                .trim();
+        username = username.toLowerCase().trim();
+        return email.equals(username);
+    }
 
     private boolean correctLogin() {
         if (passwordField.getText() == null || passwordField.getText().isBlank()) {
             correctLoginProp.setValue(false);
         } else {
-            if (allDoctors.isEmpty()) {
-                DoctorsDao dao = new MySqlDoctorsDao(dataSource);
+            if (allPatients.isEmpty()) {
+                PatientsDao dao = new MySqlPatientsDao(dataSource);
 
                 try {
-                    Iterable<Doctor> doctors = dao.getAllDoctors();
-                    for (Doctor doctor : doctors) {
-                        allDoctors.add(doctor);
+                    Iterable<Patient> patients = dao.getAllPatients();
+                    for (Patient patient : patients) {
+                        allPatients.add(patient);
                     }
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
 
-            allDoctors.stream()
+            allPatients.stream()
                     .map(Login::getCredentials)
                     .filter(credentials -> credentials != null)
                     .filter(credentials -> credentials.getEmail() != null)

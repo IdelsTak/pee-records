@@ -7,6 +7,7 @@ import com.github.idelstak.pee.records.controller.database.ConnectionPreferences
 import com.github.idelstak.pee.records.controller.database.DatabaseConnectionController;
 import com.github.idelstak.pee.records.dao.api.InitializeTables;
 import com.github.idelstak.pee.records.database.DatabaseAccess;
+import com.github.idelstak.pee.records.model.spi.Patient;
 import com.github.idelstak.pee.records.view.api.FxmlParent;
 import com.github.idelstak.pee.records.view.database.DatabaseConnectionFxml;
 import com.github.idelstak.pee.records.view.login.LoginFxml;
@@ -26,12 +27,12 @@ import javax.sql.DataSource;
  */
 public class LoginAttempt {
 
-    private Optional<String> loggedInUser = Optional.empty();
+    private Optional<Patient> loggedInUser = Optional.empty();
 
     public LoginAttempt() {
     }
 
-    public Optional<String> getUser() {
+    public Optional<Patient> getUser() {
 
         ConnectionPreferences preferences = new ConnectionPreferences();
 

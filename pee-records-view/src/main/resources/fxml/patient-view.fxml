@@ -10,20 +10,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
          <children>
             <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" spacing="6.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button mnemonicParsing="false" text="Add Patient" />
+                  <Button fx:id="addCycleButton" mnemonicParsing="false" text="Add Cycle" />
+                  <Button fx:id="editCycleButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text=" Edit Cycle" />
+                  <Button fx:id="removeCycleButton" layoutX="99.0" layoutY="10.0" mnemonicParsing="false" text="Remove Cycle" />
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" spacing="6.0">
                <children>
                   <Label fx:id="usernameLabel" text="Username" />
-                  <Hyperlink text="Logout" />
+                  <Hyperlink fx:id="logoutHyperlink" text="Logout" />
                </children>
             </HBox>
          </children>
@@ -33,8 +34,8 @@
       </HBox>
       <SplitPane dividerPositions="0.1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
          <items>
-            <ListView minWidth="-Infinity" prefWidth="200.0" />
-            <CalendarView prefHeight="500.0" prefWidth="900.0" selectionMode="SINGLE" showAddCalendarButton="false" />
+            <ListView fx:id="cyclesListView" maxWidth="250.0" minWidth="-Infinity" prefWidth="200.0" />
+            <CalendarView fx:id="calendarView" prefHeight="500.0" prefWidth="900.0" selectionMode="SINGLE" showAddCalendarButton="false" showPrintButton="false" showSourceTrayButton="false" transitionsEnabled="false" traysAnimated="false" />
          </items>
       </SplitPane>
    </children>

@@ -35,7 +35,7 @@ public interface PeeEvent extends Entity {
             return description;
         }
 
-        public class Description {
+        public static class Description {
 
             private final String description;
 

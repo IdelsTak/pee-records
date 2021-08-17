@@ -65,7 +65,7 @@ public class LoginController {
     }
 
     @FXML
-    void initialize() {
+    public void initialize() {
         //Add the button types
         loginDialogPane.getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 

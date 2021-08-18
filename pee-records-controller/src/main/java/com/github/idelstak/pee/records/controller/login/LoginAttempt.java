@@ -28,6 +28,7 @@ import javax.sql.DataSource;
 public class LoginAttempt {
 
     private Optional<Patient> loggedInUser = Optional.empty();
+    private DataSource dataSource;
 
     public LoginAttempt() {
     }
@@ -47,24 +48,28 @@ public class LoginAttempt {
         //(2) the url points to a non-existent database
         //(3) the database login credentials are not correct
         try {
-            DataSource ds = databaseAccess.getDataSource();
+            dataSource = databaseAccess.getDataSource();
 
-            try (Connection conn = ds.getConnection()) {
+            try (Connection conn = dataSource.getConnection()) {
                 //Initialize the database tables
                 //Create them if they don't exist
                 //Insert at least one admin
-                InitializeTables initializeTables = new InitializeTables(ds);
+                InitializeTables initializeTables = new InitializeTables(dataSource);
 
                 initializeTables.start();
                 //After tables have been initialized
                 //show the login dialog
-                showLoginDialog(ds);
+                showLoginDialog(dataSource);
             }
         } catch (Exception e) {
             showConnectionError(preferences, e.getMessage());
         }
 
         return loggedInUser;
+    }
+
+    public DataSource getConnectedDataSource() {
+        return dataSource;
     }
 
     private void showLoginDialog(DataSource source) {

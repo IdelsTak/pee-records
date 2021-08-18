@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `patients` (
 
 
 LOCK TABLES `patients` WRITE;
-INSERT INTO patients (first_name, last_name, date_of_birth, registration_date, email, password) 
-	VALUES ('John', 'Doe', '2020-04-17', '2021-08-11', 'johndoe@gmail.com', '123');
+INSERT INTO patients (id, first_name, last_name, date_of_birth, registration_date, email, password) 
+	VALUES (1, 'John', 'Doe', '2020-04-17', '2021-08-11', 'johndoe@gmail.com', '123');
 UNLOCK TABLES;
 
 CREATE TABLE IF NOT EXISTS `pee_cycles` (

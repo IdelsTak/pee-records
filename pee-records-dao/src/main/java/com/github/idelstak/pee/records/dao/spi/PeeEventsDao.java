@@ -13,7 +13,7 @@ import java.util.Optional;
  *
  * @author Hiram K. <https://github.com/IdelsTak>
  */
-public interface PeeEventDao {
+public interface PeeEventsDao {
 
     Iterable<PeeEvent> getAllEvents() throws IOException;
 

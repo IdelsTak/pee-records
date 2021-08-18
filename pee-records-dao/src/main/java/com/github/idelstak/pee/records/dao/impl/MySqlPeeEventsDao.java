@@ -3,7 +3,6 @@
  */
 package com.github.idelstak.pee.records.dao.impl;
 
-import com.github.idelstak.pee.records.dao.spi.PeeEventDao;
 import com.github.idelstak.pee.records.model.impl.MySqlPeeEvent;
 import com.github.idelstak.pee.records.model.spi.PeeCycle;
 import com.github.idelstak.pee.records.model.spi.PeeEvent;
@@ -21,16 +20,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.sql.DataSource;
+import com.github.idelstak.pee.records.dao.spi.PeeEventsDao;
 
 /**
  *
  * @author Hiram K. <https://github.com/IdelsTak>
  */
-public class MySqlPeeEventDao implements PeeEventDao {
+public class MySqlPeeEventsDao implements PeeEventsDao {
 
     private final DataSource dataSource;
 
-    public MySqlPeeEventDao(DataSource dataSource) {
+    public MySqlPeeEventsDao(DataSource dataSource) {
         if (dataSource == null) {
             throw new IllegalArgumentException("Data source must not be null");
         }
@@ -122,7 +122,7 @@ public class MySqlPeeEventDao implements PeeEventDao {
 
         try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setTimestamp(1, Timestamp.valueOf(newPeeTime));
-            stmt.setInt(1, eventId.getId());
+            stmt.setInt(2, eventId.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -142,7 +142,7 @@ public class MySqlPeeEventDao implements PeeEventDao {
 
         try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newType.toString());
-            stmt.setInt(1, eventId.getId());
+            stmt.setInt(2, eventId.getId());
 
             stmt.executeUpdate();
         } catch (SQLException ex) {

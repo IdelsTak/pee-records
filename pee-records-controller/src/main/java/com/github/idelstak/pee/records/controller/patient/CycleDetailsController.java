@@ -43,7 +43,8 @@ public class CycleDetailsController {
     @FXML
     public void initialize() {
         dialogPane.getButtonTypes().setAll(saveBtnType, ButtonType.CANCEL);
-
+        
+        startDatePicker.skinProperty().addListener(o -> startDatePicker.requestFocus());
         startDatePicker.valueProperty().setValue(startDate == null ? LocalDate.now() : startDate);
         startDateProp.bind(startDatePicker.valueProperty());
         endDateProp.bind(Bindings.createObjectBinding(() -> {

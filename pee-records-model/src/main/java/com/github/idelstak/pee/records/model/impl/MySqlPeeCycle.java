@@ -54,10 +54,10 @@ public class MySqlPeeCycle implements PeeCycle, Comparable<PeeCycle> {
         if (patient == null) {
             String sql = "SELECT patient_id FROM pee_cycles WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         patient = new MySqlPatient(dataSource, rset.getInt(1));
                     }
@@ -74,10 +74,10 @@ public class MySqlPeeCycle implements PeeCycle, Comparable<PeeCycle> {
         if (startDate == null) {
             String sql = "SELECT start_date FROM pee_cycles WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         startDate = rset.getDate(1).toLocalDate();
                     }
@@ -94,10 +94,10 @@ public class MySqlPeeCycle implements PeeCycle, Comparable<PeeCycle> {
         if (endDate == null) {
             String sql = "SELECT end_date FROM pee_cycles WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         endDate = rset.getDate(1).toLocalDate();
                     }
@@ -115,10 +115,10 @@ public class MySqlPeeCycle implements PeeCycle, Comparable<PeeCycle> {
 
         String sql = "SELECT id FROM pee_cycle_events WHERE pee_cycle_id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
 
-            try (ResultSet rset = stmt.executeQuery()) {
+            try ( ResultSet rset = stmt.executeQuery()) {
                 while (rset.next()) {
                     events.add(new MySqlPeeEvent(dataSource, rset.getInt(1)));
                 }

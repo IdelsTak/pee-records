@@ -4,14 +4,12 @@
 package com.github.idelstak.pee.records.dao.impl;
 
 import com.github.idelstak.pee.records.dao.spi.DoctorsDao;
-import com.github.idelstak.pee.records.model.impl.MySqlDoctor;
 import com.github.idelstak.pee.records.model.api.Credentials;
 import com.github.idelstak.pee.records.model.api.Name;
+import com.github.idelstak.pee.records.model.impl.MySqlDoctor;
 import com.github.idelstak.pee.records.model.spi.Doctor;
 import com.github.idelstak.pee.records.model.spi.core.Entity;
 import java.io.IOException;
-import java.util.Optional;
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +17,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.sql.DataSource;
 
 /**
  *
@@ -40,7 +40,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
         List<Doctor> doctors = new ArrayList<>();
         String sql = "SELECT * FROM doctors";
 
-        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement(); ResultSet rset = stmt.executeQuery(sql)) {
+        try ( Connection conn = dataSource.getConnection();  Statement stmt = conn.createStatement();  ResultSet rset = stmt.executeQuery(sql)) {
             while (rset.next()) {
                 doctors.add(new MySqlDoctor(dataSource, rset.getInt(1)));
             }
@@ -81,7 +81,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
         Optional<Entity> optionalDoctorId = Optional.empty();
         String sql = "INSERT INTO doctors (first_name, last_name, email, password, active) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, name.getFirstName());
             stmt.setString(2, name.getLastName());
             stmt.setString(3, credentials.getEmail());
@@ -90,7 +90,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
 
             stmt.executeUpdate();
 
-            try (ResultSet rset = stmt.getGeneratedKeys()) {
+            try ( ResultSet rset = stmt.getGeneratedKeys()) {
                 if (rset.next()) {
                     int id = rset.getInt(1);
                     optionalDoctorId = Optional.of(() -> id);
@@ -113,7 +113,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
 
         String sql = "UPDATE doctors SET first_name = ?, last_name = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newName.getFirstName());
             stmt.setString(2, newName.getLastName());
             stmt.setInt(3, doctorId.getId());
@@ -134,7 +134,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
 
         String sql = "UPDATE doctors SET email = ?, password = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newCredentials.getEmail());
             stmt.setString(2, new String(newCredentials.getPassword()));
             stmt.setInt(3, doctorId.getId());
@@ -162,7 +162,7 @@ public class MySqlDoctorsDao implements DoctorsDao {
 
         String sql = "UPDATE doctors SET active = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setShort(1, activate ? Integer.valueOf(1).shortValue() : Integer.valueOf(0).shortValue());
             stmt.setInt(2, doctorId.getId());
 

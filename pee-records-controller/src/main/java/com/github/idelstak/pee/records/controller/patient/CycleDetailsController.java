@@ -4,9 +4,7 @@
 package com.github.idelstak.pee.records.controller.patient;
 
 import com.github.idelstak.pee.records.controller.util.DateStringConverter;
-import com.github.idelstak.pee.records.model.spi.PeeCycle;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -15,8 +13,6 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.DialogPane;
-import javafx.util.StringConverter;
-import javax.sql.DataSource;
 
 /**
  *
@@ -43,7 +39,7 @@ public class CycleDetailsController {
     @FXML
     public void initialize() {
         dialogPane.getButtonTypes().setAll(saveBtnType, ButtonType.CANCEL);
-        
+
         startDatePicker.skinProperty().addListener(o -> startDatePicker.requestFocus());
         startDatePicker.valueProperty().setValue(startDate == null ? LocalDate.now() : startDate);
         startDateProp.bind(startDatePicker.valueProperty());

@@ -22,7 +22,7 @@ public class ConnectionPreferences {
 
     public ConnectionPreferences() {
         this.prefs = Preferences.userNodeForPackage(ConnectionPreferences.class);
-        
+
 //        try {
 //            prefs.clear();
 //        } catch (BackingStoreException ex) {

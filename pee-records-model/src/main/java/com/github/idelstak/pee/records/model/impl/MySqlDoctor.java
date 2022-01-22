@@ -172,6 +172,5 @@ public class MySqlDoctor implements Doctor, Comparable<Doctor> {
                 .thenComparing(Doctor::isActive)
                 .compare(this, otherDoctor);
     }
-    
-    
+
 }

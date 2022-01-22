@@ -11,7 +11,9 @@ import com.github.idelstak.pee.records.model.spi.Patient;
 import com.github.idelstak.pee.records.view.api.FxmlParent;
 import com.github.idelstak.pee.records.view.database.DatabaseConnectionFxml;
 import com.github.idelstak.pee.records.view.login.LoginFxml;
+import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Optional;
 import javafx.application.Platform;
 import javafx.scene.Parent;
@@ -50,7 +52,7 @@ public class LoginAttempt {
         try {
             dataSource = databaseAccess.getDataSource();
 
-            try (Connection conn = dataSource.getConnection()) {
+            try ( Connection conn = dataSource.getConnection()) {
                 //Initialize the database tables
                 //Create them if they don't exist
                 //Insert at least one admin
@@ -61,7 +63,7 @@ public class LoginAttempt {
                 //show the login dialog
                 showLoginDialog(dataSource);
             }
-        } catch (Exception e) {
+        } catch (IOException | SQLException e) {
             showConnectionError(preferences, e.getMessage());
         }
 

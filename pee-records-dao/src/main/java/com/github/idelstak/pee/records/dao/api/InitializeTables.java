@@ -31,11 +31,9 @@ public class InitializeTables {
     }
 
     /**
-     * Loads an {@code sql} file containing the script to create all the
-     * required tables.
+     * Loads an {@code sql} file containing the script to create all the required tables.
      *
-     * @throws IOException if an error occurs while executing the {@code sql}
-     * statements
+     * @throws IOException if an error occurs while executing the {@code sql} statements
      */
     public void start() throws IOException {
         Path path = null;
@@ -63,13 +61,13 @@ public class InitializeTables {
                     }
                 }
             }
-            
+
             path = Paths.get(uri);
         } catch (URISyntaxException ex) {
             throw new IOException(ex);
         }
 
-        try (Connection conn = source.getConnection()) {
+        try ( Connection conn = source.getConnection()) {
             ScriptRunner runner = new ScriptRunner(conn);
 
             runner.runScript(Files.newBufferedReader(path));

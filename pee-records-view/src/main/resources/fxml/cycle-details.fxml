@@ -8,37 +8,37 @@
 <?import javafx.scene.layout.VBox?>
 
 <DialogPane fx:id="dialogPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <VBox prefWidth="300.0" style="-fx-background-color: white;">
-         <children>
-            <VBox spacing="6.0">
-               <children>
-                  <Label text="Start" />
-                  <DatePicker fx:id="startDatePicker" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
-                  <Label maxWidth="1.7976931348623157E308" text="Start date is required" visible="false" />
-               </children>
-            </VBox>
-            <VBox spacing="6.0">
-               <children>
-                  <Label text="End" />
-                  <DatePicker fx:id="endDatePicker" disable="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
-                  <Label maxWidth="1.7976931348623157E308" text="End date is required" visible="false" />
-               </children>
-            </VBox>
-         </children>
-         <padding>
-            <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
-         </padding>
-      </VBox>
-   </content>
-   <header>
-      <HBox alignment="CENTER" prefHeight="70.0" style="-fx-background-color: #add8e6;">
-         <children>
-            <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 1.5em;" text="Event Cycle" HBox.hgrow="ALWAYS" />
-         </children>
-         <padding>
-            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-         </padding>
-      </HBox>
-   </header>
+    <content>
+        <VBox prefWidth="300.0" style="-fx-background-color: white;">
+            <children>
+                <VBox spacing="6.0">
+                    <children>
+                        <Label text="Start" />
+                        <DatePicker fx:id="startDatePicker" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
+                        <Label maxWidth="1.7976931348623157E308" text="Start date is required" visible="false" />
+                    </children>
+                </VBox>
+                <VBox spacing="6.0">
+                    <children>
+                        <Label text="End" />
+                        <DatePicker fx:id="endDatePicker" disable="true" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
+                        <Label maxWidth="1.7976931348623157E308" text="End date is required" visible="false" />
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+            </padding>
+        </VBox>
+    </content>
+    <header>
+        <HBox alignment="CENTER" prefHeight="70.0" style="-fx-background-color: #add8e6;">
+            <children>
+                <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 1.5em;" text="Event Cycle" HBox.hgrow="ALWAYS" />
+            </children>
+            <padding>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </padding>
+        </HBox>
+    </header>
 </DialogPane>

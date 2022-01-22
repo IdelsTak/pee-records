@@ -3,8 +3,6 @@
  */
 package com.github.idelstak.pee.records.controller;
 
-import com.github.idelstak.pee.records.controller.App;
-
 /**
  *
  * @author Hiram K. <https://github.com/IdelsTak>
@@ -17,5 +15,5 @@ public class Launcher {
     public static void main(String[] args) {
         App.main(args);
     }
-    
+
 }

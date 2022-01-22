@@ -12,7 +12,7 @@ import javafx.util.StringConverter;
  * @author Hiram K. <https://github.com/IdelsTak>
  */
 public class DateStringConverter extends StringConverter<LocalDate> {
-    
+
     private final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd, YYYY");
 
     @Override
@@ -30,5 +30,5 @@ public class DateStringConverter extends StringConverter<LocalDate> {
         }
         return LocalDate.parse(s, dtf);
     }
-    
+
 }

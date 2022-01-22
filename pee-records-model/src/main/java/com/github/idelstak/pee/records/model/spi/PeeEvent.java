@@ -21,6 +21,7 @@ public interface PeeEvent extends Entity {
     Type getType();
 
     public enum Type {
+
         WET_NIGHT("Wet Night"),
         FEW_DROPS("Few Drops"),
         DRY_NIGHT("Dry Night");
@@ -53,6 +54,7 @@ public interface PeeEvent extends Entity {
                 return optionalType.orElseThrow(() -> new TypeNotPresentException(description, null));
             }
         }
+
     }
 
 }

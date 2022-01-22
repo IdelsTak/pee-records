@@ -9,7 +9,6 @@ import com.github.idelstak.pee.records.model.spi.Patient;
 import com.github.idelstak.pee.records.view.api.FxmlParent;
 import com.github.idelstak.pee.records.view.patient.PatientViewFxml;
 import java.util.Optional;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -21,8 +20,6 @@ import javafx.stage.Stage;
  * @author Hiram K. <https://github.com/IdelsTak>
  */
 public class App extends Application {
-
-    private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 
     @Override
     public void start(Stage primaryStage) {

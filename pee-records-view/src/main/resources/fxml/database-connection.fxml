@@ -14,94 +14,94 @@
 
 
 <DialogPane fx:id="connectionDialogPane" stylesheets="@../css/database-admin-dialog.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="24.0" style="-fx-background-color: white;">
-         <children>
-            <VBox spacing="12.0" VBox.vgrow="NEVER">
-               <children>
-                  <VBox spacing="6.0">
-                     <children>
+    <content>
+        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="24.0" style="-fx-background-color: white;">
+            <children>
+                <VBox spacing="12.0" VBox.vgrow="NEVER">
+                    <children>
                         <VBox spacing="6.0">
-                           <children>
-                              <Label text="Host" />
-                              <TextField fx:id="hostTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="e.g. localhost, 127.0.0.1" />
-                           </children>
+                            <children>
+                                <VBox spacing="6.0">
+                                    <children>
+                                        <Label text="Host" />
+                                        <TextField fx:id="hostTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="e.g. localhost, 127.0.0.1" />
+                                    </children>
+                                </VBox>
+                            </children>
                         </VBox>
-                     </children>
-                  </VBox>
-                  <VBox spacing="6.0">
-                     <children>
-                        <Label text="Database Name" />
-                        <TextField fx:id="databaseNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-            <VBox spacing="6.0" VBox.vgrow="NEVER">
-               <children>
-                  <VBox spacing="6.0">
-                     <children>
-                        <Label text="Username" />
-                        <TextField fx:id="usernameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-                  <VBox spacing="6.0">
-                     <children>
-                        <Label text="Password" />
-                        <PasswordField fx:id="passwordTextfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-            <VBox spacing="6.0" VBox.vgrow="NEVER">
-               <children>
-                  <Label text="URL" />
-                  <TextField fx:id="urlTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" promptText="jdbc:mysql://localhost/databasename" />
-               </children>
-            </VBox>
-            <VBox spacing="12.0" VBox.vgrow="NEVER">
-               <children>
-                  <HBox spacing="12.0">
-                     <children>
-                        <Button fx:id="testConnectionButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Test Connection">
-                           <graphic>
-                              <ImageView pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/data-transfer18px.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <ProgressIndicator fx:id="connectionProgressIndicator" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" progress="0.0" visible="false" />
-                     </children>
-                  </HBox>
-                  <VBox>
-                     <children>
-                        <Label fx:id="connectionStatusLabel" contentDisplay="RIGHT" graphicTextGap="6.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" wrapText="true" />
-                        <Label fx:id="connectionFailureDetailsLabel" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="80.0" style="-fx-font-size: 0.9em; -fx-text-fill: grey;" wrapText="true" />
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-         </children>
-         <padding>
-            <Insets bottom="6.0" left="36.0" right="36.0" top="36.0" />
-         </padding>
-      </VBox>
-   </content>
-   <header>
-      <HBox alignment="CENTER" style="-fx-background-color: #add8e6;">
-         <children>
-            <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 1.5em;" text="Database Connection Settings" HBox.hgrow="ALWAYS" />
-            <ImageView pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/database-administrator50px.png" />
-               </image>
-            </ImageView>
-         </children>
-         <padding>
-            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-         </padding>
-      </HBox>
-   </header>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Database Name" />
+                                <TextField fx:id="databaseNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+                <VBox spacing="6.0" VBox.vgrow="NEVER">
+                    <children>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Username" />
+                                <TextField fx:id="usernameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Password" />
+                                <PasswordField fx:id="passwordTextfield" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+                <VBox spacing="6.0" VBox.vgrow="NEVER">
+                    <children>
+                        <Label text="URL" />
+                        <TextField fx:id="urlTextField" editable="false" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" promptText="jdbc:mysql://localhost/databasename" />
+                    </children>
+                </VBox>
+                <VBox spacing="12.0" VBox.vgrow="NEVER">
+                    <children>
+                        <HBox spacing="12.0">
+                            <children>
+                                <Button fx:id="testConnectionButton" graphicTextGap="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="200.0" text="Test Connection">
+                                    <graphic>
+                                        <ImageView pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/data-transfer18px.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <ProgressIndicator fx:id="connectionProgressIndicator" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" progress="0.0" visible="false" />
+                            </children>
+                        </HBox>
+                        <VBox>
+                            <children>
+                                <Label fx:id="connectionStatusLabel" contentDisplay="RIGHT" graphicTextGap="6.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" wrapText="true" />
+                                <Label fx:id="connectionFailureDetailsLabel" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="80.0" style="-fx-font-size: 0.9em; -fx-text-fill: grey;" wrapText="true" />
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="6.0" left="36.0" right="36.0" top="36.0" />
+            </padding>
+        </VBox>
+    </content>
+    <header>
+        <HBox alignment="CENTER" style="-fx-background-color: #add8e6;">
+            <children>
+                <Label maxWidth="1.7976931348623157E308" style="-fx-font-size: 1.5em;" text="Database Connection Settings" HBox.hgrow="ALWAYS" />
+                <ImageView pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/database-administrator50px.png" />
+                    </image>
+                </ImageView>
+            </children>
+            <padding>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </padding>
+        </HBox>
+    </header>
 </DialogPane>

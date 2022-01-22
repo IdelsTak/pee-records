@@ -10,39 +10,39 @@
 
 
 <DialogPane fx:id="dialogPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <content>
-      <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="350.0" style="-fx-background-color: white;">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="24.0">
-               <children>
-                  <VBox spacing="6.0">
-                     <children>
-                        <Label text="Date" />
-                        <DatePicker fx:id="eventDatePicker" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
-                     </children>
-                  </VBox>
-                  <VBox spacing="6.0">
-                     <children>
-                        <Label text="Type" />
-                        <ChoiceBox fx:id="typeChoiceBox" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
-                     </children>
-                  </VBox>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
-               </VBox.margin>
-            </VBox>
-         </children>
-      </VBox>
-   </content>
-   <header>
-      <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-background-color: #add8e6;">
-         <children>
-            <Label style="-fx-font-size: 1.5em;" text="Pee Event" />
-         </children>
-         <padding>
-            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-         </padding>
-      </HBox>
-   </header>
+    <content>
+        <VBox maxWidth="-Infinity" minWidth="-Infinity" prefWidth="350.0" style="-fx-background-color: white;">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="24.0">
+                    <children>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Date" />
+                                <DatePicker fx:id="eventDatePicker" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="6.0">
+                            <children>
+                                <Label text="Type" />
+                                <ChoiceBox fx:id="typeChoiceBox" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="30.0" />
+                            </children>
+                        </VBox>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                    </VBox.margin>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+    <header>
+        <HBox alignment="CENTER_LEFT" prefHeight="70.0" style="-fx-background-color: #add8e6;">
+            <children>
+                <Label style="-fx-font-size: 1.5em;" text="Pee Event" />
+            </children>
+            <padding>
+                <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            </padding>
+        </HBox>
+    </header>
 </DialogPane>

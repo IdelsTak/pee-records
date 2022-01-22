@@ -43,7 +43,7 @@ public class MySqlPatientsDao implements PatientsDao {
 
         String sql = "SELECT id FROM patients";
 
-        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement(); ResultSet rset = stmt.executeQuery(sql)) {
+        try ( Connection conn = dataSource.getConnection();  Statement stmt = conn.createStatement();  ResultSet rset = stmt.executeQuery(sql)) {
             while (rset.next()) {
                 allPatients.add(new MySqlPatient(dataSource, rset.getInt(1)));
             }
@@ -89,7 +89,7 @@ public class MySqlPatientsDao implements PatientsDao {
 
         String sql = "INSERT INTO patients (first_name, last_name, date_of_birth, registration_date, email, password) VALUES (?, ?, ?, ?, ?, ?)";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, name.getFirstName());
             stmt.setString(2, name.getLastName());
             stmt.setDate(3, Date.valueOf(dateOfBirth));
@@ -99,7 +99,7 @@ public class MySqlPatientsDao implements PatientsDao {
 
             stmt.executeUpdate();
 
-            try (ResultSet rset = stmt.getGeneratedKeys()) {
+            try ( ResultSet rset = stmt.getGeneratedKeys()) {
                 if (rset.next()) {
                     int patientId = rset.getInt(1);
                     optionalEntity = Optional.of(() -> patientId);
@@ -122,7 +122,7 @@ public class MySqlPatientsDao implements PatientsDao {
 
         String sql = "UPDATE patients SET first_name = ?, last_name = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newName.getFirstName());
             stmt.setString(2, newName.getLastName());
             stmt.setInt(3, patientId.getId());
@@ -145,7 +145,7 @@ public class MySqlPatientsDao implements PatientsDao {
 
         String sql = "UPDATE patients SET email = ?, password = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newCredentials.getEmail());
             stmt.setString(2, new String(newCredentials.getPassword()));
             stmt.setInt(3, patientId.getId());
@@ -166,7 +166,7 @@ public class MySqlPatientsDao implements PatientsDao {
 
         String sql = "UPDATE patients SET date_of_birth = ?, WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(newDateOfBirth));
             stmt.setInt(2, patientId.getId());
 
@@ -186,10 +186,10 @@ public class MySqlPatientsDao implements PatientsDao {
 
         String sql = "UPDATE patients SET registration_date = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(newRegistrationDate));
             stmt.setInt(2, patientId.getId());
-            
+
             stmt.executeUpdate();
         } catch (SQLException ex) {
             throw new IOException(ex);

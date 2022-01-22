@@ -52,10 +52,10 @@ public class MySqlPeeEvent implements PeeEvent, Comparable<PeeEvent> {
 
             String sql = "SELECT pee_cycle_id FROM pee_cycle_events WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         cycle = new MySqlPeeCycle(dataSource, rset.getInt(1));
                     }
@@ -72,10 +72,10 @@ public class MySqlPeeEvent implements PeeEvent, Comparable<PeeEvent> {
         if (when == null) {
             String sql = "SELECT when_peed FROM pee_cycle_events WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         when = rset.getTimestamp(1).toLocalDateTime();
                     }
@@ -92,10 +92,10 @@ public class MySqlPeeEvent implements PeeEvent, Comparable<PeeEvent> {
         if (type == null) {
             String sql = "SELECT pee_type FROM pee_cycle_events WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         String t = rset.getString(1);
                         type = new Type.Description(t).toPeeType();

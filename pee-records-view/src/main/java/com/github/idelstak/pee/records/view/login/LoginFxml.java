@@ -23,5 +23,5 @@ public class LoginFxml implements FxmlUrl {
     public URL get() {
         return MethodHandles.lookup().lookupClass().getResource(name);
     }
-    
+
 }

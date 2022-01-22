@@ -58,10 +58,10 @@ public class MySqlPatient implements Patient, Comparable<Patient> {
         if (name == null) {
             String sql = "SELECT first_name, last_name FROM patients WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         String firstName = rset.getString(1);
                         String lastName = rset.getString(2);
@@ -83,10 +83,10 @@ public class MySqlPatient implements Patient, Comparable<Patient> {
         if (credentials == null) {
             String sql = "SELECT email, password FROM patients WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         String email = rset.getString(1);
                         String password = rset.getString(2);
@@ -107,10 +107,10 @@ public class MySqlPatient implements Patient, Comparable<Patient> {
         if (dateOfBirth == null) {
             String sql = "SELECT date_of_birth FROM patients WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         dateOfBirth = rset.getDate(1).toLocalDate();
                     }
@@ -127,10 +127,10 @@ public class MySqlPatient implements Patient, Comparable<Patient> {
         if (registrationDate == null) {
             String sql = "SELECT registration_date FROM patients WHERE id = ?";
 
-            try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setInt(1, id);
 
-                try (ResultSet rset = stmt.executeQuery()) {
+                try ( ResultSet rset = stmt.executeQuery()) {
                     if (rset.next()) {
                         registrationDate = rset.getDate(1).toLocalDate();
                     }
@@ -148,10 +148,10 @@ public class MySqlPatient implements Patient, Comparable<Patient> {
 
         String sql = "SELECT id FROM pee_cycles WHERE patient_id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
 
-            try (ResultSet rset = stmt.executeQuery()) {
+            try ( ResultSet rset = stmt.executeQuery()) {
                 while (rset.next()) {
                     cycles.add(new MySqlPeeCycle(dataSource, rset.getInt(1)));
                 }

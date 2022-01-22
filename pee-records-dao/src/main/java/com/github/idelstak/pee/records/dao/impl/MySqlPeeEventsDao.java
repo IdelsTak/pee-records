@@ -3,6 +3,7 @@
  */
 package com.github.idelstak.pee.records.dao.impl;
 
+import com.github.idelstak.pee.records.dao.spi.PeeEventsDao;
 import com.github.idelstak.pee.records.model.impl.MySqlPeeEvent;
 import com.github.idelstak.pee.records.model.spi.PeeCycle;
 import com.github.idelstak.pee.records.model.spi.PeeEvent;
@@ -20,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.sql.DataSource;
-import com.github.idelstak.pee.records.dao.spi.PeeEventsDao;
 
 /**
  *
@@ -43,7 +43,7 @@ public class MySqlPeeEventsDao implements PeeEventsDao {
 
         String sql = "SELECT id FROM pee_cycle_events";
 
-        try (Connection conn = dataSource.getConnection(); Statement stmt = conn.createStatement(); ResultSet rset = stmt.executeQuery(sql)) {
+        try ( Connection conn = dataSource.getConnection();  Statement stmt = conn.createStatement();  ResultSet rset = stmt.executeQuery(sql)) {
             while (rset.next()) {
                 allEvents.add(new MySqlPeeEvent(dataSource, rset.getInt(1)));
             }
@@ -86,14 +86,14 @@ public class MySqlPeeEventsDao implements PeeEventsDao {
 
         String sql = "INSERT INTO pee_cycle_events (pee_cycle_id, when_peed, pee_type) VALUES (?, ?, ?)";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setInt(1, cycleId.getId());
             stmt.setTimestamp(2, Timestamp.valueOf(whenPeed));
             stmt.setString(3, type.toString());
 
             stmt.executeUpdate();
 
-            try (ResultSet rset = stmt.getGeneratedKeys()) {
+            try ( ResultSet rset = stmt.getGeneratedKeys()) {
                 if (rset.next()) {
                     int eventId = rset.getInt(1);
 
@@ -120,7 +120,7 @@ public class MySqlPeeEventsDao implements PeeEventsDao {
 
         String sql = "UPDATE pee_cycle_events SET when_peed = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setTimestamp(1, Timestamp.valueOf(newPeeTime));
             stmt.setInt(2, eventId.getId());
 
@@ -140,7 +140,7 @@ public class MySqlPeeEventsDao implements PeeEventsDao {
 
         String sql = "UPDATE pee_cycle_events SET pee_type = ? WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, newType.toString());
             stmt.setInt(2, eventId.getId());
 
@@ -158,7 +158,7 @@ public class MySqlPeeEventsDao implements PeeEventsDao {
 
         String sql = "DELETE FROM pee_cycle_events WHERE id = ?";
 
-        try (Connection conn = dataSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try ( Connection conn = dataSource.getConnection();  PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, eventId.getId());
 
             stmt.executeUpdate();
